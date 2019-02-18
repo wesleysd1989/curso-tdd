@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "start": "nodemon src/server.js",
+    "test": "jest",
+    "secure-mode": "jest --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "jest": "^24.1.0",
+    "nodemon": "^1.18.10",
     "supertest": "^3.4.2"
   },
   "dependencies": {
