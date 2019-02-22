@@ -10,6 +10,7 @@ test('Deve listar todos os usuarios', () => {
     });
 });
 
+/*
 test('Deve inserir usuário com sucesso', () => {
     const email = `${Date.now()}@mail.com`
     return request(app).post('/users')
@@ -19,3 +20,4 @@ test('Deve inserir usuário com sucesso', () => {
         expect(res.body.name).toBe('maria veridiane');
     })
 });
+*/
