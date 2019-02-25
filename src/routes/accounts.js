@@ -11,5 +11,10 @@ module.exports = (app) => {
         .then((result) => res.status(200).json(result));
     };
 
-    return { create, findAll }
+    const find =  (req, res) => {
+        app.services.account.find({id: req.params.id})
+        .then((result) => res.status(200).json(result));
+    };
+
+    return { create, findAll, find }
 };
