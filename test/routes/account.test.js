@@ -49,3 +49,12 @@ test('Deve alterar uma conta', () => {
         expect(res.body.name).toBe('Acc Updated');
     });
 });
+
+test('Deve remover uma conta', () => {
+    return app.db('accounts')
+    .insert({ name: 'Acc To Remove', user_id: user.id }, ['id'])
+    .then(acc => request(app).delete(`${MAIN_ROUTE}/${acc[0].id}`))
+    .then((res) => {
+        expect(res.status).toBe(204);
+    });
+});
