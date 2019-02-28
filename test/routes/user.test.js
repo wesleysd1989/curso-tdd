@@ -60,7 +60,7 @@ test('Não deve inserir usuário sem senha', (done) => {
         .catch(err => done.fail(err));
 });
 
-test.skip('Não deve inserir usuário com email já existente', () => {
+test('Não deve inserir usuário com email já existente', () => {
     return request(app).post('/users')
     .send({ name: 'maria veridiane', email, password: '123456'})
     .then((res) => {
