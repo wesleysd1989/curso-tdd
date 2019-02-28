@@ -12,7 +12,7 @@ module.exports = (app) => {
     };
 
     const strategy = new Strategy(params, (payload, done) => {
-        app.service.user.findone({ id: payload.id })
+        app.services.user.findOne({ id: payload.id })
         .then((user) => {
             if(user) done(null, { ... payload });
             else done(null, false);
