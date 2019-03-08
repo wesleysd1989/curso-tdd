@@ -95,3 +95,26 @@ test('Nao deve remover uma transação de outro usuário', () => {
             expect(res.body.error).toBe('Este recurso não pertence ao usuário');
         }));
 });
+
+test('Não deve alterar uma transação', () => {
+    return app.db('transactions').insert(
+        { description: 'to Update', date: new Date(), ammount: 100, type: 'I', acc_id: accUser2.id }, ['id'],
+    ).then(trans => request(app).put(`${MAIN_ROUTE}/${trans[0].id}`)
+        .set('authorization', `bearer ${user.token}`)
+        .send({ description: 'Update' })
+        .then((res) => {
+            expect(res.status).toBe(403);
+            expect(res.body.error).toBe('Este recurso não pertence ao usuário');
+        }));
+});
+
+test('Não deve retornar uma transação por Id', () => {
+    return app.db('transactions').insert(
+        { description: 'T Id', date: new Date(), ammount: 100, type: 'I', acc_id: accUser2.id }, ['id'],
+    ).then(trans => request(app).get(`${MAIN_ROUTE}/${trans[0].id}`)
+        .set('authorization', `bearer ${user.token}`)
+        .then((res) => {
+            expect(res.status).toBe(403);
+            expect(res.body.error).toBe('Este recurso não pertence ao usuário');
+        }));
+});
