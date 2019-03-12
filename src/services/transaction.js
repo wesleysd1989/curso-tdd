@@ -19,6 +19,10 @@ module.exports = (app) => {
     const save = (transaction) => {
         if(!transaction.description) throw new ValidationError('Descrição e um atributo obrigatório');
         if(!transaction.ammount) throw new ValidationError('Valor e um atributo obrigatório');
+        if(!transaction.date) throw new ValidationError('Data e um atributo obrigatório');
+        if(!transaction.type) throw new ValidationError('Tipo e um atributo obrigatório');
+        if(!transaction.acc_id) throw new ValidationError('Conta e um atributo obrigatório');
+        if(!(transaction.type === 'I' || transaction.type === 'O')) throw new ValidationError('Tipo Inválido');
 
         const newTransaction = { ... transaction };
         if((transaction.type === 'I' && transaction.ammount < 0) 
