@@ -16,7 +16,7 @@ module.exports = (app) => {
             if(acc.user_id !== parseInt(transfer.user_id, 10)) throw new ValidationError(`Conta #${acc.id} não pertence ao usuário`);
         });
     };
-    
+
     const find = (filter = {}) => {
         return app.db('transfers')
         .where(filter)
@@ -30,7 +30,6 @@ module.exports = (app) => {
     };
 
     const save = async (transfer) => {
-        await validate(transfer);
         const result = await app.db('transfers').insert(transfer, '*');
         const transferId = result[0].id;
 
@@ -44,7 +43,6 @@ module.exports = (app) => {
     };
 
     const update = async (id, transfer) => {
-        await validate(transfer);
         const result = await app.db('transfers')
         .where({ id })
         .update(transfer, '*');
@@ -57,5 +55,5 @@ module.exports = (app) => {
         return result;
     };
 
-    return { find, findOne, save, update }
+    return { find, findOne, save, update, validate }
 };
