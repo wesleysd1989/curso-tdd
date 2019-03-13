@@ -81,7 +81,7 @@ describe('Ao salvar uma tranferência valida ...', () => {
     });
 });
 
-describe('Ao tentar salvar uma transferência inválida ..', () =>{
+describe('Ao tentar salvar uma transferência inválida ...', () =>{
     const validTranfer = { description: 'Regular Transfer', user_id: 100000, acc_ori_id: 100000, acc_dest_id: 100001, ammount: 100, date: new Date() };
 
     const template = (newdata, errorMessage) => {
@@ -101,4 +101,13 @@ describe('Ao tentar salvar uma transferência inválida ..', () =>{
     test('Não deve inserir sem conta de destino', () => template({ acc_dest_id: null}, 'Conta de destino é um atributo obrigatório'));
     test('Não deve inserir se as contas de origem e destinos forem as mesmas', () => template({ acc_dest_id: 100000}, 'Não ê possível transferir de uma conta para ela mesma'));
     test('Não deve inserir se as contas pertencerem a outro usuário', () => template({ acc_ori_id: 100002}, 'Conta #100002 não pertence ao usuário'));
+});
+
+test('Deve retornar uma transferência por Id', () => {
+    return request(app).get(`${MAIN_ROUTE}/100000`)
+        .set('authorization', `bearer ${TOKEN}`)
+        .then((res) => {
+         expect(res.status).toBe(200);
+         expect(res.body.description).toBe('Transfer #1');
+    });
 });
