@@ -31,6 +31,6 @@ exports.up = (knex, Promise) => {
         knex.schema.table('transactions', (t) => {
             t.dropColumn('transfer_id');
         }),
-        knex.schema.dropTable('transfer'),
+        knex.schema.dropTable('transfers'),
       ]); 
   };
