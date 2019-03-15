@@ -23,5 +23,5 @@ exports.seed = (knex) => {
       { description: 'Transfer to AccD #1', date: new Date(), ammount: -100, type: 'O', acc_id: 100000, transfer_id: 100000 },
       { description: 'Transfer from AccO #2', date: new Date(), ammount: 100, type: 'I', acc_id: 100003, transfer_id: 100001 },
       { description: 'Transfer to AccD #2', date: new Date(), ammount: -100, type: 'O', acc_id: 100002, transfer_id: 100001 },
-    ]))
+    ]));
 };
