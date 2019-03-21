@@ -6,3 +6,7 @@ cria o arquivo de migracao
 node_modules/.bin/knex migrate:make create_table_nome_da_tabela --env test            
 executa o script de migracao    
 node_modules/.bin/knex migrate:latest --env test           
+
+criando seed        
+node_modules/.bin/knex seed:make balance --env test     
+node_modules/.bin/knex seed:run --env test      
